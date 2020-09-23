@@ -1,0 +1,6 @@
+FROM kyokuheki/vmware-horizon-client
+COPY ./view-trusted-brokers /root/.vmware/view-trusted-brokers
+COPY ./certificates/* /usr/local/share/ca-certificates
+RUN set -x \
+ && update-ca-certificates
+ 
