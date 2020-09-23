@@ -3,14 +3,25 @@ Dockernized VMware Horizon Client (vmware-view)
 
 ## run
 ```shell
-docker run -it --rm --name vmware-horizon-client -v /tmp/.X11-unix/:/tmp/.X11-unix -e DISPLAY=:0 -v$HOME/.vmware:/root/.vmware kyokuheki/vmware-horizon-client vmware-view -u USER -p PASS -s broker1.example.com --save -q
+docker run -it --rm --name vmware-horizon-client \
+  -e DISPLAY=:0 \
+  -v /tmp/.X11-unix/:/tmp/.X11-unix \
+  -v$HOME/.vmware:/root/.vmware \
+  kyokuheki/vmware-horizon-client \
+  vmware-view -u USER -p PASS -s broker1.example.com --save -q
 ```
 
 ### run with openconnect
 
 ```shell
 docker run ... --name=openconnect kyokuheki/openconnect
-docker run -it --rm --name vmware-horizon-client --net=container:openconnect -v /tmp/.X11-unix/:/tmp/.X11-unix -e DISPLAY=:0 -v$HOME/.vmware:/root/.vmware kyokuheki/vmware-horizon-client vmware-view -u USER -p PASS -s broker1.example.com --save -q
+docker run -it --rm --name vmware-horizon-client \
+  --net=container:openconnect \
+  -e DISPLAY=:0 \
+  -v /tmp/.X11-unix/:/tmp/.X11-unix \
+  -v$HOME/.vmware:/root/.vmware \
+  kyokuheki/vmware-horizon-client \
+  vmware-view -u USER -p PASS -s broker1.example.com --save -q
 ```
 
 ## trusted-brokers
