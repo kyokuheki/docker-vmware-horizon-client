@@ -33,7 +33,7 @@ RUN set -x \
  && rm -fv VMware-Horizon-Client-4.10.0-11053294.x64.bundle
 
 RUN set -x \
- && mkdir -p /root/.vmware
+ && mkdir -p /root/.vmware \
  && echo 'view.sslVerificationMode = "3"' > /root/.vmware/view-preferences
 
 COPY ./certificates/* /usr/local/share/ca-certificates
