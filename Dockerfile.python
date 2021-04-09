@@ -30,8 +30,8 @@ RUN set -x \
  && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 RUN set -x \
- && curl -o VMware-Horizon-Client.bundle https://download3.vmware.com/software/view/viewclients/CART22FQ1/VMware-Horizon-Client-2103-8.2.0-17742757.x64.bundle \
- && TERM=dumb sh ./VMware-Horizon-Client.bundle --console --eulas-agreed --required \
+ && curl -sSLo VMware-Horizon-Client.bundle https://download3.vmware.com/software/view/viewclients/CART22FQ1/VMware-Horizon-Client-2103-8.2.0-17742757.x64.bundle \
+ && sh ./VMware-Horizon-Client.bundle --console --eulas-agreed --required \
  && rm -fv VMware-Horizon-Client.bundle
 
 RUN set -x \
@@ -44,4 +44,4 @@ RUN set -x \
 
 VOLUME /tmp/.X11-unix
 ENTRYPOINT ["/usr/bin/vmware-view"]
-CMD ["--display :0"]
+CMD ["--display=:0"]
