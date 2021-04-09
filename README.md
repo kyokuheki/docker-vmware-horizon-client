@@ -32,6 +32,25 @@ docker run -it --rm --name vmware-horizon-client \
   vmware-view -u USER -p PASS -s broker1.example.com --save -q
 ```
 
+### run with PulseAudio
+
+```shell
+xhost si:localuser:root
+docker run -it --rm --name vmware-horizon-client \
+  --privileged \
+  -e DISPLAY=:0 \
+  -e USER=root \
+  -e TZ=Asia/Tokyo \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v$HOME/.vmware:/root/.vmware \
+  --device /dev/snd \
+  -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
+  -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
+  -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
+  kyokuheki/vmware-horizon-client \
+  vmware-view -u USER -p PASS -s broker1.example.com --save -q
+```
+
 ## trusted-brokers
 ```shell
 echo "broker1.example.com" >> trusted-brokers
