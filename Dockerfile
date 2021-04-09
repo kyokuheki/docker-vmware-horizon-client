@@ -30,7 +30,7 @@ RUN set -x \
  && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 RUN set -x \
- && curl -o VMware-Horizon-Client.bundle https://download3.vmware.com/software/view/viewclients/CART22FQ1/VMware-Horizon-Client-2103-8.2.0-17742757.x64.bundle
+ && curl -o VMware-Horizon-Client.bundle https://download3.vmware.com/software/view/viewclients/CART22FQ1/VMware-Horizon-Client-2103-8.2.0-17742757.x64.bundle \
  && TERM=dumb sh ./VMware-Horizon-Client.bundle --console --eulas-agreed --required \
  && rm -fv VMware-Horizon-Client.bundle
 
