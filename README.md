@@ -8,6 +8,7 @@ docker run -it --rm --name vmware-horizon-client \
   --privileged \
   -e DISPLAY=:0 \
   -e USER=root \
+  -e TZ=Asia/Tokyo \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v$HOME/.vmware:/root/.vmware \
   kyokuheki/vmware-horizon-client \
@@ -24,6 +25,7 @@ docker run -it --rm --name vmware-horizon-client \
   --net=container:openconnect \
   -e DISPLAY=:0 \
   -e USER=root \
+  -e TZ=Asia/Tokyo \
   -v /tmp/.X11-unix/:/tmp/.X11-unix \
   -v$HOME/.vmware:/root/.vmware \
   kyokuheki/vmware-horizon-client \
