@@ -3,9 +3,12 @@ Dockernized VMware Horizon Client (vmware-view)
 
 ## run
 ```shell
+xhost si:localuser:root
 docker run -it --rm --name vmware-horizon-client \
+  --privileged \
   -e DISPLAY=:0 \
-  -v /tmp/.X11-unix/:/tmp/.X11-unix \
+  -e USER=root \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v$HOME/.vmware:/root/.vmware \
   kyokuheki/vmware-horizon-client \
   vmware-view -u USER -p PASS -s broker1.example.com --save -q
@@ -14,10 +17,13 @@ docker run -it --rm --name vmware-horizon-client \
 ### run with openconnect
 
 ```shell
+xhost si:localuser:root
 docker run ... --name=openconnect kyokuheki/openconnect
 docker run -it --rm --name vmware-horizon-client \
+  --privileged \
   --net=container:openconnect \
   -e DISPLAY=:0 \
+  -e USER=root \
   -v /tmp/.X11-unix/:/tmp/.X11-unix \
   -v$HOME/.vmware:/root/.vmware \
   kyokuheki/vmware-horizon-client \
