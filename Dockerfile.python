@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM python:slim-buster
 LABEL maintainer Kenzo Okuda <kyokuheki@gmail.com>
 
 ENV LANG=C.UTF-8 \
