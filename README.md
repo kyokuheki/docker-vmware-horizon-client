@@ -57,3 +57,26 @@ echo "broker1.example.com" >> view-trusted-brokers
 echo "broker2.example.com" >> view-trusted-brokers
 docker build . -f Dockerfile.custom -t vmware-horizon-client
 ```
+
+## Dependencies
+```
+VMware Horizon SmartCard
+  libpcsclite1
+VMware Horizon(R) Virtualization Pack for Skype for Business
+  libusb-1.0-0
+VMware Horizon Real-Time Audio-Video
+  libpulse0
+  libv4l-0
+VMware Horizon Multimedia Redirection (MMR)
+  libgstreamer1.0-0
+  libgstreamer-plugins-base1.0-0
+VMware Horizon Scanner Redirection
+  libsane
+VMware Horizon Client HTML5 Multimedia Redirection
+  libnss3
+  libnspr4
+  libx11-xcb1
+  libdrm2
+  libgbm1
+  libasound2
+```
