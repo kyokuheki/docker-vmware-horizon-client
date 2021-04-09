@@ -1,4 +1,4 @@
-FROM python:slim
+FROM python:slim-buster
 LABEL maintainer Kenzo Okuda <kyokuheki@gmail.com>
 
 ENV LANG=C.UTF-8 \
@@ -8,29 +8,31 @@ ENV LANG=C.UTF-8 \
 
 RUN set -x \
  && apt-get update && apt-get install -y \
-    wget \
+    curl \
     iproute2 \
     iputils-ping \
-    libx11-6 \
-    libxinerama1 \
-    libatk1.0-0 \
-    libcairo2 \
-    libgdk-pixbuf2.0-0 \
-    libgtk2.0-0 \
-    libxss1 \
-    libxtst6 \
+    libcups2 \
+    libglib2.0-0 \
+    libgtk-3-0 \
     libpcsclite1 \
     libusb-1.0-0 \
     libpulse0 \
     libv4l-0 \
-    libxkbfile1 \
+    libgstreamer1.0-0 \
+    libgstreamer-plugins-base1.0-0 \
+    libsane \
+    libnss3 \
+    libnspr4 \
+    libx11-xcb1 \
+    libdrm2 \
+    libgbm1 \
+    libasound2 \
  && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-# libgstreamer0.10-0 libgstreamer-plugins-base0.10-0
 
 RUN set -x \
- && wget https://download3.vmware.com/software/view/viewclients/CART19FQ4/VMware-Horizon-Client-4.10.0-11053294.x64.bundle \
- && TERM=dumb sh ./VMware-Horizon-Client-4.10.0-11053294.x64.bundle --console --eulas-agreed --required \
- && rm -fv VMware-Horizon-Client-4.10.0-11053294.x64.bundle
+ && curl -o VMware-Horizon-Client.bundle https://download3.vmware.com/software/view/viewclients/CART22FQ1/VMware-Horizon-Client-2103-8.2.0-17742757.x64.bundle
+ && TERM=dumb sh ./VMware-Horizon-Client.bundle --console --eulas-agreed --required \
+ && rm -fv VMware-Horizon-Client.bundle
 
 RUN set -x \
  && mkdir -p /root/.vmware \
