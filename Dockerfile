@@ -14,6 +14,7 @@ RUN set -x \
     libcups2 \
     libglib2.0-0 \
     libgtk-3-0 \
+    libxkbfile1 \
     libpcsclite1 \
     libusb-1.0-0 \
     libpulse0 \
