@@ -4,7 +4,8 @@ LABEL maintainer Kenzo Okuda <kyokuheki@gmail.com>
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive \
-    USER=root
+    USER=root \
+    NO_AT_BRIDGE=1
 
 RUN set -x \
  && apt-get update && apt-get install -y \
