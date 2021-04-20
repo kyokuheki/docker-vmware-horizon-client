@@ -48,4 +48,4 @@ RUN set -x \
  && update-ca-certificates
 
 VOLUME /tmp/.X11-unix
-CMD ["/usr/bin/vmware-view", "--display :0"]
+CMD ["/usr/bin/vmware-view", "--display=:0"]
