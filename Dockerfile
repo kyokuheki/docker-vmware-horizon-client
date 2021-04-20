@@ -22,11 +22,6 @@ RUN set -x \
     libxtst6 \
     libxkbfile1 \
  && apt-get install -y --no-install-recommends \
-    pulseaudio \
-    libcanberra-pulse \
-    libcanberra-gtk3-module \
-    libcanberra-gtk0 \
- && apt-get install -y --no-install-recommends \
     libpcsclite1 \
     libusb-1.0-0 \
     libpulse0 \
@@ -40,6 +35,11 @@ RUN set -x \
     libdrm2 \
     libgbm1 \
     libasound2 \
+ && apt-get install -y --no-install-recommends \
+    pulseaudio \
+    libcanberra-pulse \
+    libcanberra-gtk3-module \
+    libcanberra-gtk0 \
  && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 RUN set -x \
