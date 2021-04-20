@@ -1,0 +1,48 @@
+FROM python:slim
+LABEL maintainer Kenzo Okuda <kyokuheki@gmail.com>
+
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    DEBIAN_FRONTEND=noninteractive \
+    BUNDLE_URL=https://download3.vmware.com/software/view/viewclients/CART19FQ4/VMware-Horizon-Client-4.10.0-11053294.x64.bundle \
+    USER=root
+
+RUN set -x \
+ && apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    iproute2 \
+    iputils-ping \
+    binutils \
+    libx11-6 \
+    libxinerama1 \
+    libxtst6 \
+    libglib2.0-0 \
+    libgtk2.0-0 \
+    libxss1 \
+    libxkbfile1 \
+    libpulse0 \
+    libv4l-0 \
+    pulseaudio \
+    libcanberra-pulse \
+    libcanberra-gtk-module \
+    libpcsclite1 \
+    libusb-1.0-0 \
+    libcairo2 \
+ && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+
+RUN set -x \
+ && curl -sSLo VMware-Horizon-Client.bundle $BUNDLE_URL \
+ && sh ./VMware-Horizon-Client.bundle --console --eulas-agreed --required \
+ && rm -fv VMware-Horizon-Client.bundle
+
+RUN set -x \
+ && mkdir -p /root/.vmware \
+ && echo 'view.sslVerificationMode = "3"' > /root/.vmware/view-preferences
+
+COPY ./certificates/* /usr/local/share/ca-certificates
+RUN set -x \
+ && update-ca-certificates
+
+VOLUME /tmp/.X11-unix
+CMD ["/usr/bin/vmware-view", "--display=:0"]
