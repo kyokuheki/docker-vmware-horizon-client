@@ -8,25 +8,27 @@ ENV LANG=C.UTF-8 \
     USER=root
 
 RUN set -x \
- && apt-get update && apt-get install -y \
+ && apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    ca-certificates \
     iproute2 \
     iputils-ping \
+    binutils \
+    libx11-6 \
     libxinerama1 \
-    libatk1.0-0 \
-    libgtk2.0-0 \
-    libxkbfile1 \
-    libcairo2 \
-    libgdk-pixbuf2.0-0 \
-    libxss1 \
     libxtst6 \
-    libpcsclite1 \
-    libusb-1.0-0 \
+    libglib2.0-0 \
+    libgtk2.0-0 \
+    libxss1 \
+    libxkbfile1 \
     libpulse0 \
     libv4l-0 \
-    libx11-6 \
     pulseaudio \
+    libcanberra-pulse \
     libcanberra-gtk-module \
+    libpcsclite1 \
+    libusb-1.0-0 \
+    libcairo2 \
  && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 RUN set -x \
@@ -43,4 +45,4 @@ RUN set -x \
  && update-ca-certificates
 
 VOLUME /tmp/.X11-unix
-CMD ["/usr/bin/vmware-view", "--display :0"]
+CMD ["/usr/bin/vmware-view", "--display=:0"]
