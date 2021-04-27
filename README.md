@@ -2,7 +2,7 @@
 Dockernized VMware Horizon Client (vmware-view)
 
 ## Run
-### Run using Xorg server via UNIX Socket
+### Run using Window server via UNIX Socket
 
 ```shell
 docker run -it --rm --name vmware-horizon-client \
@@ -22,9 +22,9 @@ docker run -it --rm --name vmware-horizon-client \
 
 If you get black screen, see [Black screen problem](#black-screen-problem)
 
-### Run using Xorg server via TCP connection
+### Run the container using TCP for Window server connection
 
-Enable the TCP listen for Xorg server.
+The procedure to enable TCP connection for the Window server on Ubuntu 20.04 is shown below.
 
 ```shell
 sudo sed -i -e '/^\[security\]/a DisallowTCP=false' /etc/gdm3/custom.conf
@@ -36,7 +36,7 @@ ss -nltpu | grep 6000
 Run the container.
 
 ```shell
-# Allow 172.17.0.100 to connect to X
+# Allow 172.17.0.100 to connect to Window server
 export DISPLAY=:0
 xhost +inet:172.17.0.100
 
@@ -142,7 +142,7 @@ The following table shows the matrix of screen display and audio output when Ubu
 | 4.10.0-11053294       | OK                        | OK                       | Choppy sound               | Choppy sound              |
 
 - If you need audio output, use version 2103 and connect to the Xorg server via TCP.
-- If you don't need audio output, you can use version 5.0.0 and connect to the Xorg server via UNIX Socket.
+- If you don't need audio output, you can use version 5.0.0 and connect to the Window server via UNIX Socket.
 
 ## trusted-brokers
 
