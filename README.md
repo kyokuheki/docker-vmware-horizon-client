@@ -56,8 +56,7 @@ docker run -it --rm --name vmware-horizon-client \
 ```
 
 ### Use root user
-
-If you want to use `root`, issue the following command: For authentication of the Xorg server, you need to enable the user with the `xhost` command.
+If you want to use `root`, run the following command. You will temporarily allow the root user to access the local user's X session using the `xhost` command.
 
 ```shell
 # Set DISPLAY env
